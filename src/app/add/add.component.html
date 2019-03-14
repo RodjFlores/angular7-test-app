@@ -1,0 +1,52 @@
+<div style="text-align: center">
+  <h1>
+    {{title}}
+  </h1>
+</div>
+
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="FirstName" nzRequired>
+          <span>
+            First Name
+          </span>
+        </nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+          <input nz-input id="FirstName" formControlName="FirstName" [(ngModel)]="FirstName">
+          <nz-form-explain *ngIf="validateForm.get('FirstName')?.dirty && validateForm.get('FirstName')?.errors">First Name needs 3+ characters!</nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="LastName" nzRequired>
+            <span>
+              Last Name
+            </span>
+          </nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24">
+            <input nz-input id="LastName" formControlName="LastName" [(ngModel)]="LastName">
+            <nz-form-explain *ngIf="validateForm.get('LastName')?.dirty && validateForm.get('LastName')?.errors">Last Name needs 3+ characters!</nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+    
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input formControlName="email" id="email" [(ngModel)]="email">
+        <nz-form-explain *ngIf="validateForm.get('email')?.dirty && validateForm.get('email')?.errors">
+          The input is not valid E-mail!
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    
+    
+    
+    <nz-form-item nz-row style="margin-bottom:8px;">
+        <nz-form-control [nzSpan]="14" [nzOffset]="6">
+          <button nz-button nzType="primary" *ngIf="validateForm.status === 'VALID'; else elseBlock">Add Passenger</button>
+          <ng-template #elseBlock>Please Correct the Information</ng-template>
+
+        </nz-form-control>
+      </nz-form-item>
+  </form>
